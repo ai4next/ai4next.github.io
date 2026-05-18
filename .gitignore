@@ -1,0 +1,22 @@
+# Dependencies
+node_modules/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Build output (if Jekyll used later)
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+
+# Docs
+docs/
