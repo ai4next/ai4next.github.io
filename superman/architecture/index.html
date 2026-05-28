@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Superman - 核心架构 | AI4Next</title><meta name="description" content="Superman 的核心架构：主 Agent、工具层、专家层、扩展层、会话层、记忆层和进化层。"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet"><link rel="icon" href="../assets/img/favicon.ico"><link rel="stylesheet" href="/assets/css/style.css"><link rel="stylesheet" href="../assets/css/superman.css"></head>
+<body class="superman-page">
+<header class="site-header" id="siteHeader"><nav class="nav-container"><a href="/" class="nav-logo"><img src="/assets/img/logo.png" alt="AI4Next"></a><div class="nav-links"><a href="/">AI4Next</a><a href="https://github.com/ai4next/superman" target="_blank" rel="noopener">GitHub</a></div></nav></header>
+<main class="product-shell"><aside class="toc" aria-label="Superman 产品目录"><a class="toc-brand" href="/superman/"><img src="../assets/img/logo.png" alt=""><span>Superman</span></a><nav><a href="/superman/">产品定位</a><a href="/superman/problems/">解决的问题</a><a class="active" href="/superman/architecture/">核心架构</a><a href="/superman/capabilities/">能力矩阵</a><a href="/superman/scenarios/">典型场景</a><a href="/superman/workflow/">工作方式</a><a href="/superman/quickstart/">快速上手</a><a href="/superman/extension/">扩展体系</a><a href="/superman/runtime/">运行与治理</a><a href="/superman/audience/">适合谁使用</a></nav></aside>
+<article class="product-doc narrow"><section class="doc-section first"><p class="section-kicker">Architecture</p><h1>核心架构</h1><p>Superman 的架构重点是“群体”和“边界”：主 Agent 协调工具与专家，专家拥有独立记忆与会话，进化系统只在明确目录中改写长期能力。</p><div class="architecture-map" aria-label="Superman architecture"><div class="arch-node main">Superman 主 Agent</div><div class="arch-row"><div class="arch-node">工具层<br><span>exec / read / write / patch / ask</span></div><div class="arch-node">专家层<br><span>delegate + 独立专家记忆</span></div><div class="arch-node">扩展层<br><span>MCP / Skills / Hooks</span></div></div><div class="arch-row"><div class="arch-node">会话层<br><span>SQLite + compact logs + snapshots</span></div><div class="arch-node">记忆层<br><span>L1 facts + L2 SOP</span></div><div class="arch-node">进化层<br><span>agent evolver + meta evolver</span></div></div></div><p>主 Agent 记忆、专家记忆、专家 soul、evolver 记忆、会话、审计日志分别落在不同目录和存储中。系统可以学习，但学习结果必须进入明确的位置，避免自我改进变成不可控漂移。</p>
+<div class="detail-grid">
+<div class="detail-card"><h3>CLI 与 Runtime</h3><p><code>internal/cli</code> 负责 Cobra 命令入口，包括 init、run、reflect、im、sessions、runtime、toolsets 等命令。<code>internal/runtime</code> 负责事件驱动执行、审计日志和运行循环，让交互式界面、单次执行和 IM server 能复用同一套核心运行逻辑。</p></div>
+<div class="detail-card"><h3>Agent 工厂</h3><p><code>internal/agent</code> 构建主 Agent、专家 Agent 和 evolver Agent，注入模型、工具、记忆、SOP、上下文和委托能力。它是把配置转换成实际可运行 Agent 的核心位置。</p></div>
+<div class="detail-card"><h3>Session 与 Store</h3><p><code>internal/session</code> 提供持久 SessionService，负责上下文构建、压缩、文件 revision tracking、导入导出和引用关系。底层 <code>internal/store</code> 使用 SQLite/GORM 保存会话、消息和文件元数据。</p></div>
+<div class="detail-card"><h3>Memory 与 Expert</h3><p><code>internal/memory</code> 使用扁平文件组织 L1 facts 和 L2 SOP。<code>internal/expert</code> 用目录注册专家，专家名称来自目录名，<code>soul.md</code> 是该专家的系统提示。</p></div>
+</div>
+<h2>运行时数据边界</h2>
+<p>Superman 默认 workspace 是 <code>~/.sm/</code>。运行时目录不仅用于保存数据，也表达责任边界：主 Agent 的记忆不和专家记忆混在一起，evolver 的记忆不和普通会话混在一起，审计事件也不伪装成长期知识。</p>
+<div class="code-inline-list">
+<div><code>memory/l1.toml</code>：主 Agent 的全局事实。</div>
+<div><code>memory/l2/*.md</code>：可复用 SOP、流程、约定和操作经验。</div>
+<div><code>experts/{expert_name}/soul.md</code>：专家的系统提示词和职责定义。</div>
+<div><code>sessions/</code>：精简会话日志与文件 revision snapshots。</div>
+<div><code>runtime/events.jsonl</code>：工具调用、文本增量、错误和进化事件。</div>
+<div><code>evolution/</code>：agent evolver 与 meta evolver 的独立运行根目录。</div>
+</div>
+<div class="note-panel"><strong>架构重点：</strong>Superman 倾向用小文件、显式目录和可检查 diff 管理长期状态，而不是把所有内容隐藏在不可见上下文里。</div>
+<div class="page-nav"><a class="secondary-action" href="/superman/problems/">上一页</a><a class="primary-action" href="/superman/capabilities/">下一页：能力矩阵</a></div></section></article></main>
+<script src="../assets/js/page.js"></script></body></html>

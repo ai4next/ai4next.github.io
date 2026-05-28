@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Superman - 产品定位 | AI4Next</title>
+<meta name="description" content="Superman 是 AI4Next 开源的群体进化自治 AI Agent。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
+<link rel="icon" href="../assets/img/favicon.ico">
+<link rel="stylesheet" href="/assets/css/style.css">
+<link rel="stylesheet" href="./assets/css/superman.css">
+</head>
+<body class="superman-page">
+<header class="site-header" id="siteHeader">
+  <nav class="nav-container">
+    <a href="/" class="nav-logo"><img src="/assets/img/logo.png" alt="AI4Next"></a>
+    <div class="nav-links">
+      <a href="/">AI4Next</a>
+      <a href="https://github.com/ai4next/superman" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </nav>
+</header>
+<main class="product-shell">
+  <aside class="toc" aria-label="Superman 产品目录">
+    <a class="toc-brand" href="/superman/"><img src="./assets/img/logo.png" alt=""><span>Superman</span></a>
+    <nav>
+      <a class="active" href="/superman/">产品定位</a>
+      <a href="/superman/problems/">解决的问题</a>
+      <a href="/superman/architecture/">核心架构</a>
+      <a href="/superman/capabilities/">能力矩阵</a>
+      <a href="/superman/scenarios/">典型场景</a>
+      <a href="/superman/workflow/">工作方式</a>
+      <a href="/superman/quickstart/">快速上手</a>
+      <a href="/superman/extension/">扩展体系</a>
+      <a href="/superman/runtime/">运行与治理</a>
+      <a href="/superman/audience/">适合谁使用</a>
+    </nav>
+  </aside>
+  <article class="product-doc">
+    <section class="product-hero">
+      <div class="hero-heading">
+        <p class="eyebrow">AI4Next Open Source Project</p>
+        <h1>Superman</h1>
+      </div>
+      <div class="hero-copy">
+        <p class="hero-lead">群体进化自治 AI Agent，将工具、专家子 Agent、持久会话、扁平文件记忆与分层自进化组织成一个有边界、可审计、可持续变强的工作系统。</p>
+        <div class="hero-actions">
+          <a class="primary-action" href="https://github.com/ai4next/superman" target="_blank" rel="noopener">查看 GitHub</a>
+          <a class="secondary-action" href="/superman/quickstart/">开始使用</a>
+        </div>
+      </div>
+      <img class="hero-art" src="./assets/img/banner.png" alt="Superman project banner">
+    </section>
+    <section class="doc-section">
+      <p class="section-kicker">Overview</p>
+      <h2>产品定位</h2>
+      <p>Superman 不是一个只会回答问题的聊天壳，也不是把所有能力塞进一个巨大 prompt 的单体 Agent。它面向真实工作流：能读写文件、执行命令、调用外部工具、委托专家、保留长期记忆，并在任务完成后把经验压缩成可复用的事实、流程和专家能力。</p>
+      <p>它的核心目标是让 AI Agent 从“一次性对话”变成“可长期协作的自治工作伙伴”：当前任务要能完成，历史任务要能沉淀，系统能力要能在边界内进化。</p>
+      <div class="lead-block">
+        <h3>一句话理解 Superman</h3>
+        <p>Superman 是一个面向工程实践的自治 Agent 运行时。它把模型、工具、文件系统、会话、记忆、专家、Hook、MCP 和即时通信入口组织在同一个 CLI 产品中，让用户可以从终端、脚本或聊天平台发起任务，并在可检查的本地 workspace 中保留完整运行痕迹。</p>
+      </div>
+      <div class="metric-grid">
+        <div><strong>6</strong><span>内建工具</span></div>
+        <div><strong>11</strong><span>生命周期 Hook</span></div>
+        <div><strong>多模型</strong><span>OpenAI / Gemini / Claude / DeepSeek / Ollama</span></div>
+        <div><strong>多入口</strong><span>TUI / CLI / IM Server</span></div>
+      </div>
+      <div class="detail-grid">
+        <div class="detail-card">
+          <h3>不是一次性聊天</h3>
+          <p>Superman 将对话、工具调用、文件修订、运行事件和沉淀后的记忆保存下来。它关心一次任务的完成，也关心完成之后哪些经验值得进入长期系统。</p>
+        </div>
+        <div class="detail-card">
+          <h3>不是无边界自改写</h3>
+          <p>进化不是随意改 prompt。主 Agent、专家、evolver、meta evolver 各自拥有不同的存储位置和责任边界，学习结果必须落入明确的文件或会话体系。</p>
+        </div>
+        <div class="detail-card">
+          <h3>不是单一入口产品</h3>
+          <p>你可以在 TUI 中交互，可以用 <code>sm run</code> 做脚本化执行，也可以用 <code>sm im serve</code> 把同一套 Agent 能力接入企业聊天工具。</p>
+        </div>
+        <div class="detail-card">
+          <h3>不是封闭工具箱</h3>
+          <p>内建工具覆盖本地执行和文件操作，MCP 接外部工具服务，Skill 复用技能说明，Hook 接入组织自己的审批、审计、拦截和通知流程。</p>
+        </div>
+      </div>
+      <div class="note-panel"><strong>产品关键词：</strong>有状态、可审计、可扩展、专家协同、分层进化、本地文件系统优先。</div>
+      <div class="page-nav"><a class="primary-action" href="/superman/problems/">继续阅读：解决的问题</a></div>
+    </section>
+  </article>
+</main>
+<script src="./assets/js/page.js"></script>
+</body>
+</html>
